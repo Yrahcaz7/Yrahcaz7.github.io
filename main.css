@@ -1,0 +1,42 @@
+* {
+	overscroll-behavior: none;
+	overscroll-behavior-block: none;
+	overscroll-behavior-inline: none;
+}
+
+html, body {
+	background-color: #f0f0f0;
+	text-align: center;
+	color: #000000;
+	font-family: 'Courier New', Courier, monospace;
+	margin: 0px;
+}
+
+body {
+	margin-top: 1.34em;
+	margin-bottom: 1.17em;
+}
+
+#games, #trees {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+}
+
+span {
+	border: 2px solid #000000;
+	padding: 0.33em;
+	margin-bottom: 0.67em;
+}
+
+a:not(:hover):not(:focus) {
+	text-decoration: none;
+}
+
+a:hover {
+	cursor: pointer;
+}
+
+a:focus {
+	outline: none;
+}
