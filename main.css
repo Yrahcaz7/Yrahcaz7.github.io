@@ -29,7 +29,7 @@ hr {
 	margin: 0.5em;
 }
 
-#games, #trees {
+#games, #trees, #tools {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-evenly;
