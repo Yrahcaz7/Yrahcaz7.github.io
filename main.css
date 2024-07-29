@@ -21,7 +21,16 @@ html, body {
 
 body {
 	margin-top: 1.34em;
-	margin-bottom: 1.17em;
+	margin-bottom: 0.5em;
+}
+
+h1, h2, h3 {
+	padding: 0em 0.5em;
+}
+
+.header {
+	font-size: medium;
+	font-weight: normal;
 }
 
 hr {
@@ -33,12 +42,43 @@ hr {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-evenly;
+	padding: 0em 0.5em;
 }
 
-span {
+.item {
+	display: flex;
+	align-items: center;
 	border: 2px solid var(--txt-color);
 	padding: 0.33em;
 	margin-bottom: 0.67em;
+}
+
+.star {
+	position: relative;
+	width: 0;
+	display: block;
+	margin: calc(-3em - 50%) 0.1em 0 -0.7em;
+	border-left: 0.3em solid transparent;
+	border-right: 0.3em solid transparent;
+	border-bottom: 0.7em solid var(--link-color-1);
+}
+
+.star:before, .star:after {
+	content: "";
+	position: absolute;
+	top: 0.6em;
+	left: -1em;
+	border-left: 1em solid transparent;
+	border-right: 1em solid transparent;
+	border-bottom: inherit;
+}
+
+.star:before {
+	transform: rotate(-35deg);
+}
+
+.star:after {
+	transform: rotate(35deg);
 }
 
 a:link {
