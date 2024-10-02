@@ -70,7 +70,7 @@ hr {
 
 .star {
 	position: relative;
-	margin: calc(-3em - 50%) 0.1em 0 -0.7em;
+	margin: -8em 0.1em 0 -0.7em;
 	border-left: 0.3em solid transparent;
 	border-right: 0.3em solid transparent;
 	border-bottom: 0.7em solid var(--link-color-1);
