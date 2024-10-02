@@ -16,16 +16,30 @@ html, body {
 	text-align: center;
 	font-family: 'Courier New', Courier, monospace;
 	color: var(--txt-color);
-	margin: 0px;
+	margin: 0;
 }
 
 body {
-	margin-top: 1.34em;
-	margin-bottom: 0.5em;
+	margin-top: 1.34rem;
+	margin-bottom: 0.5rem;
 }
 
 h1, h2, h3 {
-	padding: 0em 0.5em;
+	padding: 0 0.5rem;
+}
+
+.flex {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.icon {
+	margin: -1em 0;
+	width: 2em;
+	height: 2em;
+	image-rendering: pixelated;
 }
 
 .header {
@@ -35,28 +49,27 @@ h1, h2, h3 {
 
 hr {
 	border: 1px solid var(--txt-color);
-	margin: 0.5em;
+	margin: 0.5rem;
 }
 
 #games, #trees, #tools {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-evenly;
-	padding: 0em 0.5em;
+	padding: 0 0.5rem;
+	gap: 0.5rem;
 }
 
 .item {
 	display: flex;
 	align-items: center;
 	border: 2px solid var(--txt-color);
-	padding: 0.33em;
-	margin-bottom: 0.67em;
+	padding: 0.33rem;
+	margin-bottom: 0.67rem;
 }
 
 .star {
 	position: relative;
-	width: 0;
-	display: block;
 	margin: calc(-3em - 50%) 0.1em 0 -0.7em;
 	border-left: 0.3em solid transparent;
 	border-right: 0.3em solid transparent;
@@ -100,12 +113,11 @@ a:focus {
 button {
 	border: 2px solid var(--txt-color);
 	background-color: var(--bg-color);
-	padding: 0.33em;
+	padding: 0.33rem;
 	font-size: medium;
 	font-family: 'Courier New', Courier, monospace;
 	color: var(--txt-color);
-	margin-top: 0.67em;
-	margin-bottom: 0.67em;
+	margin: 0.67rem 0;
 }
 
 a:hover, button:hover {

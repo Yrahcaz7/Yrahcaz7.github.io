@@ -1,4 +1,4 @@
-const GAMES = [["Formula Clicker", "A simplistic<br>clicker game", true], ["Dungeon of Souls", "A turn-based roguelike<br>deck-builder game"]];
+const GAMES = [["Formula Clicker", "A simplistic<br>clicker game", true], ["Dungeon of Souls", "A turn-based roguelike<br>deck-builder game"], ["Matter Grid", "A clicker game based on<br>filling a grid with matter"]];
 
 const TREES = [["Yrahcaz7", "The Primordial Tree"], ["more-repo-forks", "Adaptation Tree"], ["more-repo-forks", "Booster-Generator Tree"]];
 
@@ -14,7 +14,7 @@ window.onload = () => {
 		text += "<a href='https://yrahcaz7.github.io/" + GAMES[index][0].replace(/\s/g, "-") + "/'>Play the Game</a><br>";
 		text += "<a href='https://github.com/Yrahcaz7/" + GAMES[index][0].replace(/\s/g, "-") + "'>View Source Code</a></div></span>";
 	};
-	document.getElementById("games").innerHTML = text + "<span class='item'><div>More coming soon!</div></span>";
+	document.getElementById("games").innerHTML = text;
 	text = "";
 	for (let index = 0; index < TREES.length; index++) {
 		text += "<span class='item'><div><b>" + TREES[index][1] + "</b><br>";
