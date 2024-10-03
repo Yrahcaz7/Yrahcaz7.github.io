@@ -3,12 +3,11 @@
 	--txt-color: #101010;
 	--link-color-1: #0000EE;
 	--link-color-2: #551A8B;
+	--table-color: #10F0F040;
 }
 
 * {
 	overscroll-behavior: none;
-	overscroll-behavior-block: none;
-	overscroll-behavior-inline: none;
 }
 
 html, body {
@@ -20,15 +19,14 @@ html, body {
 }
 
 body {
-	margin-top: 1.34rem;
-	margin-bottom: 0.5rem;
+	margin: 1.34rem 0 0.5rem;
 }
 
 h1, h2, h3 {
 	padding: 0 0.5rem;
 }
 
-.flex {
+#title {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -52,7 +50,7 @@ hr {
 	margin: 0.5rem;
 }
 
-#games, #trees, #tools {
+#games, #trees, #tools, .flex {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-evenly;
@@ -110,16 +108,46 @@ a:focus {
 	outline: none;
 }
 
+a:hover, button:hover {
+	cursor: pointer;
+}
+
+.flex {
+	justify-content: center;
+	margin-top: 1.17rem;
+}
+
 button {
-	border: 2px solid var(--txt-color);
 	background-color: var(--bg-color);
-	padding: 0.33rem;
 	font-size: medium;
 	font-family: 'Courier New', Courier, monospace;
 	color: var(--txt-color);
-	margin: 0.67rem 0;
 }
 
-a:hover, button:hover {
-	cursor: pointer;
+dialog {
+	box-sizing: border-box;
+	max-width: calc(100% - 1rem);
+	max-height: calc(100% - 2.34rem);
+	border: 2px solid var(--txt-color);
+	background-color: var(--bg-color);
+	color: var(--txt-color);
+	padding: 0.67rem 0.5rem;
+}
+
+table {
+	margin: 1rem 0;
+	width: 100%;
+	border-spacing: 0.5rem 0;
+}
+
+table tr:nth-child(odd) {
+	background-color: var(--table-color);
+}
+
+select {
+	font-size: medium;
+	font-family: 'Courier New', Courier, monospace;
+	border: none;
+	background: none;
+	color: var(--txt-color);
 }
