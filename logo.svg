@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" style="
+	text-align: center;
+	color: #404040;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 12px;
+">
+	<g stroke="#404040" fill="none">
+		<polygon fill="#c0c0c0" points="125,56.698729810778 143.301270189222,75 150,100 143.301270189222,125 125,143.301270189222 100,150 75,143.301270189222 56.698729810778,125 50,100 56.698729810778,75 75,56.698729810778 100,50"></polygon>
+		<text x="93" y="86" stroke="none" fill="#404040" style="font-size: 24px">7</text>
+		<polygon stroke="#a0a0a0" stroke-linejoin="round" points="143.301270189222,125 56.698729810778,125 100,50"></polygon>
+		<polygon stroke="#a0a0a0" stroke-linejoin="round" points="143.301270189222,75 143.301270189222,125 100,150 56.698729810778,125 56.698729810778,75 100,50"></polygon>
+		<g stroke-linecap="round" transform="translate(-31 0)">
+			<polyline points="110.825317547306,87.5 100,100 89.174682452695,87.5"></polyline>
+			<polyline points="100,100 100,118.75"></polyline>
+			<svg x="100" y="24" viewBox="0 0 100 10" stroke="none" fill="#404040">
+				<text x="-7" dx="0,0,-1.25,-0.5,-1.25,-1,-1.5">Yrahcaz</text>
+			</svg>
+		</g>
+		<polygon points="125,56.698729810778 143.301270189222,75 150,100 143.301270189222,125 125,143.301270189222 100,150 75,143.301270189222 56.698729810778,125 50,100 56.698729810778,75 75,56.698729810778 100,50"></polygon>
+	</g>
+</svg>

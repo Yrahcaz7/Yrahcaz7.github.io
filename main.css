@@ -37,7 +37,7 @@ h1, h2, h3 {
 	margin: -1em 0;
 	width: 2em;
 	height: 2em;
-	image-rendering: pixelated;
+	transform: scale(2, 2);
 }
 
 .header {
