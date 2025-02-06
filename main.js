@@ -2,7 +2,7 @@ const GAMES = [["Formula Clicker", "A simplistic<br>incremental game", true], ["
 
 const TREES = [["Yrahcaz7", "The Primordial Tree"], ["more-repo-forks", "Adaptation Tree"], ["more-repo-forks", "Booster-Generator Tree"]];
 
-const TOOLS = [["Ancient Code Converter", "A code converter for<br>mathmatical expressions"]];
+const TOOLS = [["Matrix Transformation", "A tool to visualize<br>matrix transformations"], ["Ancient Code Converter", "A code converter for<br>mathmatical expressions"]];
 
 window.onload = () => {
 	let text = "";
