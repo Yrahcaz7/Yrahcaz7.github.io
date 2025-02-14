@@ -50,7 +50,7 @@ hr {
 	margin: 0.5rem;
 }
 
-#games, #trees, #tools, .flex {
+#games, #tools, .flex {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-evenly;
@@ -127,7 +127,7 @@ button {
 dialog {
 	box-sizing: border-box;
 	max-width: calc(100% - 1rem);
-	max-height: calc(100% - 2.34rem);
+	max-height: calc(100% - 1rem);
 	border: 2px solid var(--txt-color);
 	background-color: var(--bg-color);
 	color: var(--txt-color);

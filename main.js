@@ -1,6 +1,4 @@
-const GAMES = [["Formula Clicker", "A simplistic<br>incremental game", true], ["Dungeon of Souls", "A turn-based roguelike<br>deck-builder game"], ["Matter Grid", "A clicker game based around<br>filling a grid with matter"]];
-
-const TREES = [["Yrahcaz7", "The Primordial Tree"], ["more-repo-forks", "Adaptation Tree"], ["more-repo-forks", "Booster-Generator Tree"]];
+const GAMES = [["Formula Clicker", "A simplistic<br>incremental game", true], ["Dungeon of Souls", "A turn-based roguelike<br>deck-builder game"], ["Matter Grid", "A clicker game based around<br>filling a grid with matter"], ["The Septenary Forest", "A collection of incremental<br>games made using TMT", false, true]];
 
 const TOOLS = [["Matrix Transformation", "A tool to visualize<br>matrix transformations"], ["Ancient Code Converter", "A code converter for<br>mathmatical expressions"]];
 
@@ -11,18 +9,10 @@ window.onload = () => {
 		if (GAMES[index][2]) text += "<div class='star'></div>";
 		text += "<div><b>" + GAMES[index][0] + "</b><br>";
 		if (GAMES[index][1]) text += GAMES[index][1] + "<br>";
-		text += "<a href='https://yrahcaz7.github.io/" + GAMES[index][0].replace(/\s/g, "-") + "/'>Play the Game</a><br>";
+		text += "<a href='https://yrahcaz7.github.io/" + GAMES[index][0].replace(/\s/g, "-") + "/'>Play the Game" + (GAMES[index][3] ? "s" : "") + "</a><br>";
 		text += "<a href='https://github.com/Yrahcaz7/" + GAMES[index][0].replace(/\s/g, "-") + "'>View Source Code</a></div></span>";
 	};
 	document.getElementById("games").innerHTML = text;
-	text = "";
-	for (let index = 0; index < TREES.length; index++) {
-		text += "<span class='item'><div><b>" + TREES[index][1] + "</b><br>";
-		if (TREES[index][2]) text += TREES[index][2] + "<br>";
-		text += "<a href='https://" + TREES[index][0][0].toLowerCase() + TREES[index][0].slice(1) + ".github.io/" + TREES[index][1].replace(/\s/g, "-") + "/'>Play the Game</a><br>";
-		text += "<a href='https://github.com/" + TREES[index][0] + "/" + TREES[index][1].replace(/\s/g, "-") + "'>View Source Code</a></div></span>";
-	};
-	document.getElementById("trees").innerHTML = text;
 	text = "";
 	for (let index = 0; index < TOOLS.length; index++) {
 		text += "<span class='item'><div><b>" + TOOLS[index][0] + "</b><br>";
@@ -69,7 +59,7 @@ function openSaveManager() {
 	if (!document.getElementById("save_manager")) {
 		let popup = document.createElement("dialog");
 		popup.id = "save_manager";
-		let html = "<div>These are your save data items for all Yrahcaz7 games/tools.<br>You may choose to delete any of them, wiping the saved data.</div><table><tr><th>Game/Tool</th><th>Data Type</th><th>Action</th></tr>";
+		let html = "<div>These are your save data items for all Yrahcaz7 games/tools.<br>You may choose to delete any of them, wiping the saved data.<br>Keep in mind that removing all your stored browser data removes all<br>of this data as well, so you should export your saves beforehand.</div><table><tr><th>Game/Tool</th><th>Data Type</th><th>Action</th></tr>";
 		for (let index = 0; index < localStorage.length; index++) {
 			let key = localStorage.key(index);
 			if (/Yrahcaz7/i.exec(key)) {
