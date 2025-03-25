@@ -1,4 +1,4 @@
-const GAMES = [["Formula Clicker", "A simplistic<br>incremental game", true], ["Dungeon of Souls", "A turn-based roguelike<br>deck-builder game"], ["Matter Grid", "A clicker game based around<br>filling a grid with matter"], ["The Septenary Forest", "A collection of incremental<br>games made using TMT", false, true]];
+const GAMES = [["Formula Clicker", "A simplistic<br>incremental game", true], ["Dungeon of Souls", "A turn-based roguelike<br>deck-builder game"], ["Matter Grid", "A clicker game based around<br>filling a grid with matter"], ["The Septenary Forest", "A collection of incremental<br>games made using TMT", false, true], ["&block;&block;&block;&block;&block;&block;'&block;-&block;i&block;&block;&block;&block;&block;&block;&block;&block;", "A work of &block;&block;teract&block;&block;e f&block;&block;t&block;&block;n<br>Currently st&block;&block;l &block;&block; beta"]];
 
 const TOOLS = [["Matrix Transformation", "A tool to visualize<br>matrix transformations"], ["Ancient Code Converter", "A code converter for<br>mathmatical expressions"]];
 
@@ -9,16 +9,16 @@ window.onload = () => {
 		if (GAMES[index][2]) text += "<div class='star'></div>";
 		text += "<div><b>" + GAMES[index][0] + "</b><br>";
 		if (GAMES[index][1]) text += GAMES[index][1] + "<br>";
-		text += "<a href='https://yrahcaz7.github.io/" + GAMES[index][0].replace(/\s/g, "-") + "/'>Play the Game" + (GAMES[index][3] ? "s" : "") + "</a><br>";
-		text += "<a href='https://github.com/Yrahcaz7/" + GAMES[index][0].replace(/\s/g, "-") + "'>View Source Code</a></div></span>";
+		text += "<a href=\"https://yrahcaz7.github.io/" + GAMES[index][0].replace(/&block;/g, "_").replace(/\s|'/g, "-") + "/\">Play the Game" + (GAMES[index][3] ? "s" : "") + "</a><br>";
+		text += "<a href=\"https://github.com/Yrahcaz7/" + GAMES[index][0].replace(/&block;/g, "_").replace(/\s|'/g, "-") + "\">View Source Code</a></div></span>";
 	};
 	document.getElementById("games").innerHTML = text;
 	text = "";
 	for (let index = 0; index < TOOLS.length; index++) {
 		text += "<span class='item'><div><b>" + TOOLS[index][0] + "</b><br>";
 		if (TOOLS[index][1]) text += TOOLS[index][1] + "<br>";
-		text += "<a href='https://yrahcaz7.github.io/" + TOOLS[index][0].replace(/\s/g, "-") + "/'>Use the Tool</a><br>";
-		text += "<a href='https://github.com/Yrahcaz7/" + TOOLS[index][0].replace(/\s/g, "-") + "'>View Source Code</a></div></span>";
+		text += "<a href=\"https://yrahcaz7.github.io/" + TOOLS[index][0].replace(/&block;/g, "_").replace(/\s|'/g, "-") + "/\">Use the Tool</a><br>";
+		text += "<a href=\"https://github.com/Yrahcaz7/" + TOOLS[index][0].replace(/&block;/g, "_").replace(/\s|'/g, "-") + "\">View Source Code</a></div></span>";
 	};
 	document.getElementById("tools").innerHTML = text;
 };
