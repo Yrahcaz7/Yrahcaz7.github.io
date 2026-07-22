@@ -10,7 +10,12 @@ const TOOLS = [
 	["Matrix Transformation", "A tool to visualize<br>matrix transformations"]
 ];
 
-window.onload = () => {
+window.addEventListener("load", () => {
+	const prefersDarkQuery = window?.matchMedia?.("(prefers-color-scheme: dark)");
+	if (prefersDarkQuery) {
+		if (prefersDarkQuery.matches) changeTheme();
+		prefersDarkQuery.addEventListener("change", changeTheme);
+	}
 	let text = "";
 	for (let index = 0; index < GAMES.length; index++) {
 		text += "<span class='item'>";
@@ -29,7 +34,7 @@ window.onload = () => {
 		text += "<a href=\"https://github.com/Yrahcaz7/" + TOOLS[index][0].replace(/&block;/g, "_").replace(/\s|'/g, "-") + "\">View Source Code</a></div></span>";
 	}
 	document.getElementById("tools").innerHTML = text;
-}
+});
 
 let darkTheme = false;
 
