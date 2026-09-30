@@ -18,7 +18,7 @@ html, body {
 	margin: 0;
 }
 
-.jump-link {
+.skip-link {
 	position: absolute;
 	left: 0.5em;
 	top: 0.5em;
@@ -26,7 +26,7 @@ html, body {
 	transition: 0.33s transform;
 }
 
-.jump-link:not(:focus):not(:active) {
+.skip-link:not(:focus):not(:active) {
 	transform: translateY(-2.5em);
 }
 
@@ -36,6 +36,10 @@ body {
 
 h1, h2, h3 {
 	padding: 0 0.5rem;
+}
+
+h2 {
+	margin: 1.25rem 0 0;
 }
 
 #title {
@@ -52,9 +56,8 @@ h1, h2, h3 {
 	transform: scale(2, 2);
 }
 
-.header {
-	font-size: medium;
-	font-weight: normal;
+.subtitle {
+	margin-bottom: 1.25rem;
 }
 
 hr {
@@ -136,6 +139,11 @@ dialog {
 	background-color: var(--bg-color);
 	color: var(--txt-color);
 	padding: 0.67rem 0.5rem;
+}
+
+dialog::backdrop {
+	background: var(--txt-color);
+	opacity: 0.2;
 }
 
 table {
