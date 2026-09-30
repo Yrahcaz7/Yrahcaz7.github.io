@@ -10,7 +10,7 @@
 </head>
 
 <body>
-	<a href="#games-header" class="skip-link">
+	<a href="#games_header" class="skip-link">
 		Skip to content
 	</a>
 	<h1 id="title">
@@ -19,11 +19,11 @@
 		<img src="logo.svg" class="icon" aria-hidden="true">
 	</h1>
 	<hr>
-	<h2 id="games-header">Games</h2>
+	<h2 id="games_header">Games</h2>
 	<div class="subtitle">Starred games are completed</div>
 	<div id="games"></div>
 	<hr>
-	<h2 id="tools-header">Tools</h2>
+	<h2 id="tools_header">Tools</h2>
 	<div class="subtitle">Miscellaneous tools for various purposes</div>
 	<div id="tools"></div>
 	<hr>
@@ -31,6 +31,26 @@
 		<button id="theme" class="item" onclick="changeTheme()"><div>Switch to Dark Theme</div></button>
 		<button class="item" onclick="openSaveManager()"><div>Manage Save Data</div></button>
 	</div>
+	<dialog id="save_manager">
+		<div>
+			These are your save data items for all Yrahcaz7 games/tools.<br>
+			You may choose to delete any of them, wiping the saved data.<br>
+			Keep in mind that removing all your stored browser data removes all<br>
+			of this data as well, so you should export your saves beforehand.
+		</div>
+		<table id="save_data_table"></table>
+		<div class="flex">
+			<button class="item" onclick="closeSaveManager()">Cancel</button>
+			<button class="item" onclick="confirmApplyManagement()">Apply</button>
+		</div>
+	</dialog>
+	<dialog id="confirm_save_management">
+		<div>Are you really sure you want to apply these changes?</div>
+		<div class="flex" style="margin-top: 1rem">
+			<button class="item" onclick="closeConfirmation()">No, go back</button>
+			<button class="item" onclick="applyChanges()">Yes, I am sure</button>
+		</div>
+	</dialog>
 </body>
 
 </html>

@@ -72,26 +72,10 @@ function changeTheme() {
 	darkTheme = !darkTheme;
 }
 
-/**
- * @param {string} str 
- */
-function toTitle(str) {
-	let result = "";
-	for (let num = 0; num < str.length; num++) {
-		if (num === 0 || (/\s/.test(str.charAt(num - 1)) && !/^(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|yet)(?!\w)/.test(str.substring(num)))) {
-			result += str.charAt(num).toUpperCase();
-		} else {
-			result += str.charAt(num);
-		}
-	}
-	return result;
-}
-
 function openSaveManager() {
-	if (!document.getElementById("save_manager")) {
-		let popup = document.createElement("dialog");
-		popup.id = "save_manager";
-		let html = "<div>These are your save data items for all Yrahcaz7 games/tools.<br>You may choose to delete any of them, wiping the saved data.<br>Keep in mind that removing all your stored browser data removes all<br>of this data as well, so you should export your saves beforehand.</div><table><tr><th>Game/Tool</th><th>Data Type</th><th>Action</th></tr>";
+	const table = document.getElementById("save_data_table");
+	if (table) {
+		let html = "<tr><th>Game/Tool</th><th>Data Type</th><th>Action</th></tr>";
 		for (let index = 0; index < localStorage.length; index++) {
 			let key = localStorage.key(index);
 			if (!key || !/Yrahcaz7/i.exec(key)) {
@@ -118,39 +102,26 @@ function openSaveManager() {
 			if (TOOLS.some(tool => tool[0] === key)) {
 				type = "Tool save data";
 			}
-			html += "<tr><td>" + key + "</td><td>" + type + "</td><td><select id='save_" + index + "_action'><option value='0'>Keep</option><option value='1'>Delete</option></select></td></tr>";
+			html += "<tr><td>" + key + "</td><td>" + type + "</td><td><select id='save_" + index + "_action'><option value='keep'>Keep</option><option value='delete'>Delete</option></select></td></tr>";
 		}
-		html += "</table><div class='flex'><button class='item' onclick='closeSaveManager()'>Cancel</button><button class='item' onclick='confirmApplyManagement()'>Apply</button></div>";
-		popup.innerHTML = html;
-		document.body.append(popup);
-		popup.showModal();
-	} else {
-		resetActionSelections();
+		table.innerHTML = html;
 	}
 	useDialog("save_manager", element => element.showModal());
 }
 
-function resetActionSelections() {
-	for (let index = 0; index < localStorage.length; index++) {
-		const key = localStorage.key(index);
-		if (key && /Yrahcaz7/i.exec(key)) {
-			const actionSelector = document.getElementById("save_" + index + "_action");
-			if (actionSelector instanceof HTMLSelectElement) {
-				actionSelector.value = "0";
-			}
+/**
+ * @param {string} str 
+ */
+function toTitle(str) {
+	let result = "";
+	for (let num = 0; num < str.length; num++) {
+		if (num === 0 || (/\s/.test(str.charAt(num - 1)) && !/^(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|yet)(?!\w)/.test(str.substring(num)))) {
+			result += str.charAt(num).toUpperCase();
+		} else {
+			result += str.charAt(num);
 		}
 	}
-}
-
-/**
- * @param {string} elementID
- * @param {(element: HTMLDialogElement) => void} callback 
- */
-function useDialog(elementID, callback) {
-	const element = document.getElementById(elementID);
-	if (element instanceof HTMLDialogElement) {
-		callback(element);
-	}
+	return result;
 }
 
 function closeSaveManager() {
@@ -158,15 +129,6 @@ function closeSaveManager() {
 }
 
 function confirmApplyManagement() {
-	if (!document.getElementById("confirm_save_management")) {
-		let popup = document.createElement("dialog");
-		popup.id = "confirm_save_management";
-		popup.innerHTML = "<div>Are you really sure you want to apply these changes?</div><div class='flex' style='margin-top: 1rem'><button class='item' onclick='closeConfirmation()'>No, go back</button><button class='item' onclick='applyChanges()'>Yes, I am sure</button></div>";
-		document.body.append(popup);
-		popup.showModal();
-	} else {
-		resetActionSelections();
-	}
 	useDialog("confirm_save_management", element => element.showModal());
 }
 
@@ -179,11 +141,22 @@ function applyChanges() {
 		const key = localStorage.key(index);
 		if (key && /Yrahcaz7/i.exec(key)) {
 			const actionSelector = document.getElementById("save_" + index + "_action");
-			if (actionSelector instanceof HTMLSelectElement && actionSelector.value === "1") {
+			if (actionSelector instanceof HTMLSelectElement && actionSelector.value === "delete") {
 				localStorage.removeItem(key);
 			}
 		}
 	}
-	useDialog("confirm_save_management", element => element.remove());
-	useDialog("save_manager", element => element.remove());
+	useDialog("confirm_save_management", element => element.close());
+	useDialog("save_manager", element => element.close());
+}
+
+/**
+ * @param {string} elementID
+ * @param {(element: HTMLDialogElement) => void} callback 
+ */
+function useDialog(elementID, callback) {
+	const element = document.getElementById(elementID);
+	if (element instanceof HTMLDialogElement) {
+		callback(element);
+	}
 }
