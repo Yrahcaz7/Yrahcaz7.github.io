@@ -1,3 +1,6 @@
+/**
+ * @type {([string, string] | [string, string, boolean] | [string, string, boolean, boolean])[]}
+ */
 const GAMES = [
 	["Formula Clicker", "A simplistic<br>incremental game", true],
 	["Dungeon of Souls", "A turn-based roguelike<br>deck-builder game"],
@@ -13,7 +16,9 @@ const TOOLS = [
 window.addEventListener("load", () => {
 	const prefersDarkQuery = window?.matchMedia?.("(prefers-color-scheme: dark)");
 	if (prefersDarkQuery) {
-		if (prefersDarkQuery.matches) changeTheme();
+		if (prefersDarkQuery.matches) {
+			changeTheme();
+		}
 		prefersDarkQuery.addEventListener("change", changeTheme);
 	}
 	let text = "";
@@ -25,7 +30,10 @@ window.addEventListener("load", () => {
 		text += "<a href=\"https://yrahcaz7.github.io/" + GAMES[index][0].replace(/&block;/g, "_").replace(/\s|'/g, "-") + "/\">Play the Game" + (GAMES[index][3] ? "s" : "") + "</a><br>";
 		text += "<a href=\"https://github.com/Yrahcaz7/" + GAMES[index][0].replace(/&block;/g, "_").replace(/\s|'/g, "-") + "\">View Source Code</a></div></span>";
 	}
-	document.getElementById("games").innerHTML = text;
+	const gameList = document.getElementById("games");
+	if (gameList) {
+		gameList.innerHTML = text;
+	}
 	text = "";
 	for (let index = 0; index < TOOLS.length; index++) {
 		text += "<span class='item'><div><b>" + TOOLS[index][0] + "</b><br>";
@@ -33,21 +41,28 @@ window.addEventListener("load", () => {
 		text += "<a href=\"https://yrahcaz7.github.io/" + TOOLS[index][0].replace(/&block;/g, "_").replace(/\s|'/g, "-") + "/\">Use the Tool</a><br>";
 		text += "<a href=\"https://github.com/Yrahcaz7/" + TOOLS[index][0].replace(/&block;/g, "_").replace(/\s|'/g, "-") + "\">View Source Code</a></div></span>";
 	}
-	document.getElementById("tools").innerHTML = text;
+	const toolList = document.getElementById("tools");
+	if (toolList) {
+		toolList.innerHTML = text;
+	}
 });
 
 let darkTheme = false;
 
 function changeTheme() {
+	const themeSwitcher = document.getElementById("theme");
+	if (!themeSwitcher) {
+		return;
+	}
 	if (darkTheme) {
-		document.getElementById("theme").innerHTML = "Switch to Dark Theme";
+		themeSwitcher.innerHTML = "Switch to Dark Theme";
 		document.documentElement.style.setProperty("--bg-color", "#F0F0F0");
 		document.documentElement.style.setProperty("--txt-color", "#101010");
 		document.documentElement.style.setProperty("--link-color-1", "#0000EE");
 		document.documentElement.style.setProperty("--link-color-2", "#551A8B");
 		document.documentElement.style.setProperty("--table-color", "#10F0F040");
 	} else {
-		document.getElementById("theme").innerHTML = "Switch to Light Theme";
+		themeSwitcher.innerHTML = "Switch to Light Theme";
 		document.documentElement.style.setProperty("--bg-color", "#101010");
 		document.documentElement.style.setProperty("--txt-color", "#F0F0F0");
 		document.documentElement.style.setProperty("--link-color-1", "#EEEE00");
@@ -57,10 +72,13 @@ function changeTheme() {
 	darkTheme = !darkTheme;
 }
 
-function title(str) {
+/**
+ * @param {string} str 
+ */
+function toTitle(str) {
 	let result = "";
 	for (let num = 0; num < str.length; num++) {
-		if (num == 0 || (/\s/.test(str.charAt(num - 1)) && !/^(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|yet)(?!\w)/.test(str.substring(num)))) {
+		if (num === 0 || (/\s/.test(str.charAt(num - 1)) && !/^(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|yet)(?!\w)/.test(str.substring(num)))) {
 			result += str.charAt(num).toUpperCase();
 		} else {
 			result += str.charAt(num);
@@ -76,7 +94,7 @@ function openSaveManager() {
 		let html = "<div>These are your save data items for all Yrahcaz7 games/tools.<br>You may choose to delete any of them, wiping the saved data.<br>Keep in mind that removing all your stored browser data removes all<br>of this data as well, so you should export your saves beforehand.</div><table><tr><th>Game/Tool</th><th>Data Type</th><th>Action</th></tr>";
 		for (let index = 0; index < localStorage.length; index++) {
 			let key = localStorage.key(index);
-			if (!/Yrahcaz7/i.exec(key)) {
+			if (!key || !/Yrahcaz7/i.exec(key)) {
 				continue;
 			}
 			let type = "Game progress";
@@ -93,9 +111,13 @@ function openSaveManager() {
 			} else {
 				key = key.replace(/save/i, "");
 			}
-			key = title(key.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/[^A-Za-z0-9]/g, " ").trim());
-			if (key === "Booster Generator Tree") key = "Booster-Generator Tree";
-			if (TOOLS.some(tool => tool[0] === key)) type = "Tool save data";
+			key = toTitle(key.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/[^A-Za-z0-9]/g, " ").trim());
+			if (key === "Booster Generator Tree") {
+				key = "Booster-Generator Tree";
+			}
+			if (TOOLS.some(tool => tool[0] === key)) {
+				type = "Tool save data";
+			}
 			html += "<tr><td>" + key + "</td><td>" + type + "</td><td><select id='save_" + index + "_action'><option value='0'>Keep</option><option value='1'>Delete</option></select></td></tr>";
 		}
 		html += "</table><div class='flex'><button class='item' onclick='closeSaveManager()'>Cancel</button><button class='item' onclick='confirmApplyManagement()'>Apply</button></div>";
@@ -103,16 +125,36 @@ function openSaveManager() {
 		document.body.append(popup);
 		popup.showModal();
 	} else {
-		for (let index = 0; index < localStorage.length; index++) {
-			let key = localStorage.key(index);
-			if (/Yrahcaz7/i.exec(key)) document.getElementById("save_" + index + "_action").value = "0";
+		resetActionSelections();
+	}
+	useDialog("save_manager", element => element.showModal());
+}
+
+function resetActionSelections() {
+	for (let index = 0; index < localStorage.length; index++) {
+		const key = localStorage.key(index);
+		if (key && /Yrahcaz7/i.exec(key)) {
+			const actionSelector = document.getElementById("save_" + index + "_action");
+			if (actionSelector instanceof HTMLSelectElement) {
+				actionSelector.value = "0";
+			}
 		}
 	}
-	document.getElementById("save_manager").showModal();
+}
+
+/**
+ * @param {string} elementID
+ * @param {(element: HTMLDialogElement) => void} callback 
+ */
+function useDialog(elementID, callback) {
+	const element = document.getElementById(elementID);
+	if (element instanceof HTMLDialogElement) {
+		callback(element);
+	}
 }
 
 function closeSaveManager() {
-	if (document.getElementById("save_manager")) document.getElementById("save_manager").close();
+	useDialog("save_manager", element => element.close());
 }
 
 function confirmApplyManagement() {
@@ -123,25 +165,25 @@ function confirmApplyManagement() {
 		document.body.append(popup);
 		popup.showModal();
 	} else {
-		for (let index = 0; index < localStorage.length; index++) {
-			let key = localStorage.key(index);
-			if (/Yrahcaz7/i.exec(key)) document.getElementById("save_" + index + "_action").value = "0";
-		}
+		resetActionSelections();
 	}
-	document.getElementById("confirm_save_management").showModal();
+	useDialog("confirm_save_management", element => element.showModal());
 }
 
 function closeConfirmation() {
-	if (document.getElementById("confirm_save_management")) document.getElementById("confirm_save_management").close();
+	useDialog("confirm_save_management", element => element.close());
 }
 
 function applyChanges() {
 	for (let index = localStorage.length - 1; index >= 0; index--) {
-		let key = localStorage.key(index);
-		if (/Yrahcaz7/i.exec(key) && document.getElementById("save_" + index + "_action").value > 0) {
-			localStorage.removeItem(key);
+		const key = localStorage.key(index);
+		if (key && /Yrahcaz7/i.exec(key)) {
+			const actionSelector = document.getElementById("save_" + index + "_action");
+			if (actionSelector instanceof HTMLSelectElement && actionSelector.value === "1") {
+				localStorage.removeItem(key);
+			}
 		}
 	}
-	document.getElementById("confirm_save_management").remove();
-	document.getElementById("save_manager").remove();
+	useDialog("confirm_save_management", element => element.remove());
+	useDialog("save_manager", element => element.remove());
 }

@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {
+        "checkJs": true
+    },
+    "files": ["main.js"]
+}
