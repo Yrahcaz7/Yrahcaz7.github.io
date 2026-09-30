@@ -18,6 +18,18 @@ html, body {
 	margin: 0;
 }
 
+.jump-link {
+	position: absolute;
+	left: 0.5em;
+	top: 0.5em;
+	z-index: 1;
+	transition: 0.33s transform;
+}
+
+.jump-link:not(:focus):not(:active) {
+	transform: translateY(-2.5em);
+}
+
 body {
 	margin: 1.34rem 0 0.5rem;
 }
@@ -98,14 +110,6 @@ a:link {
 
 a:visited {
 	color: var(--link-color-2);
-}
-
-a:not(:hover):not(:focus) {
-	text-decoration: none;
-}
-
-a:focus {
-	outline: none;
 }
 
 a:hover, button:hover {
